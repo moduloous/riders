@@ -1,0 +1,7 @@
+# Nexor Rider — Netlify SPA redirect
+# This ensures /dashboard, /delivery/:id etc. all work correctly after page refresh
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

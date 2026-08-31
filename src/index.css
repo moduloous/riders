@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-brand: #6C63FF;
+    --color-brand-dark: #5A52D5;
+    --color-surface: #111827;
+    --color-surface-2: #1F2937;
+    --color-surface-3: #374151;
+    --color-text: #F9FAFB;
+    --color-text-muted: #9CA3AF;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+    --color-info: #3B82F6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #111827;
+    color: #F9FAFB;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply w-full py-4 px-6 rounded-2xl font-semibold text-base text-white transition-all duration-200
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #6C63FF, #5A52D5);
+    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.35);
+  }
+  .btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 28px rgba(108, 99, 255, 0.5);
+  }
+
+  .btn-danger {
+    @apply w-full py-4 px-6 rounded-2xl font-semibold text-base text-white transition-all duration-200
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);
+  }
+
+  .btn-success {
+    @apply w-full py-4 px-6 rounded-2xl font-semibold text-base text-white transition-all duration-200
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #10B981, #059669);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+  }
+
+  .btn-outline {
+    @apply w-full py-4 px-6 rounded-2xl font-semibold text-base transition-all duration-200
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed
+           border border-[#374151] text-[#9CA3AF] bg-transparent;
+  }
+  .btn-outline:hover:not(:disabled) {
+    @apply border-[#6C63FF] text-[#6C63FF];
+  }
+
+  .card {
+    @apply rounded-2xl p-5 bg-[#1F2937] border border-[#374151];
+  }
+
+  .input-field {
+    @apply w-full bg-[#1F2937] border border-[#374151] rounded-2xl px-4 py-4 text-base
+           text-[#F9FAFB] placeholder-[#6B7280] focus:outline-none focus:border-[#6C63FF]
+           transition-colors duration-200;
+  }
+
+  .skeleton {
+    @apply bg-[#374151] rounded-xl animate-pulse;
+  }
+}
