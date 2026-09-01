@@ -143,6 +143,9 @@ export default function DeliveryDetailPage() {
   const availableActions = ACTIONS[delivery.status] || [];
   const shortId = delivery.orderId.slice(-6).toUpperCase();
 
+  const customerPhoneMatch = delivery.dropAddress.match(/Phone:\s*(\d{10,})/);
+  const customerPhone = customerPhoneMatch ? customerPhoneMatch[1] : null;
+
   return (
     <div className="min-h-screen px-4 pb-10 pt-6 max-w-lg mx-auto">
       <BackButton onClick={() => navigate('/dashboard')} />
@@ -214,17 +217,30 @@ export default function DeliveryDetailPage() {
                 <p className="text-white font-semibold mt-0.5">Customer</p>
                 <p className="text-[#9CA3AF] text-sm leading-tight">{delivery.dropAddress}</p>
               </div>
-              <a 
-                href={`https://www.google.com/maps/dir/?api=1&destination=${delivery.dropLatitude},${delivery.dropLongitude}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#6C63FF] hover:bg-[#5b54d6] text-white p-2.5 rounded-xl transition-colors shrink-0 shadow-sm shadow-[#6C63FF]/20"
-                title="Navigate to Drop-off"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
-              </a>
+              <div className="flex flex-col gap-2 shrink-0">
+                <a 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${delivery.dropLatitude},${delivery.dropLongitude}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#6C63FF] hover:bg-[#5b54d6] text-white p-2.5 rounded-xl transition-colors shadow-sm shadow-[#6C63FF]/20 flex items-center justify-center"
+                  title="Navigate to Drop-off"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                </a>
+                {customerPhone && (
+                  <a 
+                    href={`tel:${customerPhone}`}
+                    className="bg-[#10B981] hover:bg-[#059669] text-white p-2.5 rounded-xl transition-colors shadow-sm shadow-[#10B981]/20 flex items-center justify-center"
+                    title="Call Customer"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
