@@ -189,15 +189,42 @@ export default function DeliveryDetailPage() {
             <div className="w-3 h-3 rounded-full bg-[#10B981] flex-shrink-0" />
           </div>
           <div className="flex-1 space-y-4">
-            <div>
-              <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wide">Pickup</p>
-              <p className="text-white font-semibold mt-0.5">{delivery.pharmacy.name}</p>
-              <p className="text-[#9CA3AF] text-sm">{delivery.pickupAddress}</p>
+            <div className="flex justify-between items-start gap-2">
+              <div className="flex-1">
+                <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wide">Pickup</p>
+                <p className="text-white font-semibold mt-0.5">{delivery.pharmacy.name}</p>
+                <p className="text-[#9CA3AF] text-sm leading-tight">{delivery.pickupAddress}</p>
+              </div>
+              <a 
+                href={`https://www.google.com/maps/dir/?api=1&destination=${delivery.pickupLatitude},${delivery.pickupLongitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#374151] hover:bg-[#4B5563] text-white p-2.5 rounded-xl transition-colors shrink-0 shadow-sm"
+                title="Navigate to Pickup"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </a>
             </div>
-            <div>
-              <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wide">Drop-off</p>
-              <p className="text-white font-semibold mt-0.5">Customer</p>
-              <p className="text-[#9CA3AF] text-sm">{delivery.dropAddress}</p>
+            <div className="flex justify-between items-start gap-2">
+              <div className="flex-1">
+                <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wide">Drop-off</p>
+                <p className="text-white font-semibold mt-0.5">Customer</p>
+                <p className="text-[#9CA3AF] text-sm leading-tight">{delivery.dropAddress}</p>
+              </div>
+              <a 
+                href={`https://www.google.com/maps/dir/?api=1&destination=${delivery.dropLatitude},${delivery.dropLongitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#6C63FF] hover:bg-[#5b54d6] text-white p-2.5 rounded-xl transition-colors shrink-0 shadow-sm shadow-[#6C63FF]/20"
+                title="Navigate to Drop-off"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
